@@ -1,0 +1,226 @@
+table participantworktime
+	lineageTag: 0a4a2a0b-5c67-4ffc-b5f2-9928d8c4e68d
+	ordinal: 24
+
+	partition participantworktime = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    applications_Table = db_bi_gold{[Name="metrics_participant_worktime_metrics",Kind="Table"]}[Data]
+			in
+			    applications_Table
+
+	measure 'Utilization (Process)' = DIVIDE(SUM(participantworktime[worktime_whitelisted]), 'Expected Worktime/Day (Hrs)'[Expected Worktime/Day (Hrs) Value]*3600*COUNTROWS(participantworktime))
+		formatString:= 0.00%;-0.00%;0.00%
+		lineageTag: 5bac9cc5-d743-4e87-9f40-31603a83e5b2
+
+	measure 'Utilization (Non-Process)' = DIVIDE(SUM(participantworktime[worktime_non_whitelisted]), 'Expected Worktime/Day (Hrs)'[Expected Worktime/Day (Hrs) Value]*3600*COUNTROWS(participantworktime))
+		formatString:= 0.00%;-0.00%;0.00%
+		lineageTag: 05e20c8e-935a-4584-9f57-8aad5b4266ea
+
+	measure 'Utilization Opportunity' = ('Target Utilization (%)'[Target Utilization (%) Value]-participantworktime[Utilization (Process)]) * 'Participant Hourly Pay ($)'[Participant Hourly Pay ($) Value] * 'Expected Worktime/Day (Hrs)'[Expected Worktime/Day (Hrs) Value] * 60
+		formatString:= \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6f190a1c-e79a-41b1-b185-fcb414f43ae7
+
+	column id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 2debd6c3-bfe2-4fc6-913b-a9b59dab52a2
+		sourceColumn: id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column participant_id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 47711a37-1e11-4871-b74b-f2a7a574df4a
+		sourceColumn: participant_id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column persona_id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 80bcd4ec-c2c6-46a0-9146-e0eb64f4d093
+		sourceColumn: persona_id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: DateTime
+		formatString:= General Date
+		isDataTypeInferred: false
+		lineageTag: 88717dfa-92e9-420d-bc3e-8d2be113add3
+		sourceColumn: date
+		sourceProviderType: datetime2
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_shift_based
+		dataType: Boolean
+		formatString:= "TRUE";"TRUE";"FALSE"
+		isDataTypeInferred: false
+		lineageTag: 402ba0f4-2f2f-44ca-aa75-e18782aed093
+		sourceColumn: is_shift_based
+		sourceProviderType: bit
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_start_time
+		dataType: DateTime
+		formatString:= General Date
+		isDataTypeInferred: false
+		lineageTag: ff9592ea-860c-45f1-817c-54fc9f006177
+		sourceColumn: shift_start_time
+		sourceProviderType: datetime2
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column shift_end_time
+		dataType: DateTime
+		formatString:= General Date
+		isDataTypeInferred: false
+		lineageTag: 831f83d3-1d48-40bd-8d75-a0a24cbfb3ad
+		sourceColumn: shift_end_time
+		sourceProviderType: datetime2
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column worktime_expected
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: b21a4982-da38-4998-bfa3-bdd2e4880ff2
+		sourceColumn: worktime_expected
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column worktime_total
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: c98f2fae-99e3-44c7-bf49-c94a7bd73723
+		sourceColumn: worktime_total
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column worktime_non_whitelisted
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 43464601-75e1-417f-af2d-73d94130b4c3
+		sourceColumn: worktime_non_whitelisted
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column worktime_whitelisted
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: acc67f09-26e3-43cf-a343-25eac6d6e30f
+		sourceColumn: worktime_whitelisted
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column utilization_total
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 12fb9b4b-d228-4aa8-b041-ea34e3db1293
+		sourceColumn: utilization_total
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column utilization_whitelisted
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 0f3a51d2-8231-4b9d-b848-f67d0cd87952
+		sourceColumn: utilization_whitelisted
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column utilization_non_whitelisted
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 338f09d7-879c-4fbb-a433-47a36c0ce4f2
+		sourceColumn: utilization_non_whitelisted
+		sourceProviderType: double
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date_string
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 7ac39e14-5987-4926-a0b4-bebdc9e4f0ef
+		sourceColumn: date_string
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Worktime Process (Hrs)' = DIVIDE(participantworktime[worktime_whitelisted], 3600)
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: b75a7b0b-068a-4aee-ab13-3f06d20cb179
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Worktime Non-Process (Hrs)' = DIVIDE(participantworktime[worktime_non_whitelisted], 3600)
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 06de33c2-2c40-4bd8-ab4f-005e8e8fb61d
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Worktime Total (Hrs)' = DIVIDE(participantworktime[worktime_total], 3600)
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 5c16a67c-5cfe-4bc1-82d3-9650a34b01d9
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	annotation PBI_ResultType = Table
+

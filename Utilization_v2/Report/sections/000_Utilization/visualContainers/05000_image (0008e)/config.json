@@ -1,0 +1,37 @@
+{
+  "name": "0008ec857b4051dd06b1",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 179.58333333333334,
+        "y": 74.583333333333343,
+        "z": 20000,
+        "width": 25.833333333333336,
+        "height": 25.833333333333336,
+        "tabOrder": 5000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "image",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "icons8-filter_2913422097840993.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

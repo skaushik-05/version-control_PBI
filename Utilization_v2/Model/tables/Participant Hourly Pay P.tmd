@@ -1,0 +1,31 @@
+table 'Participant Hourly Pay P'
+	lineageTag: 0df93957-b4ea-409c-8e9c-eca6717d0ffd
+	ordinal: 20
+
+	partition 'Participant Hourly Pay P' = Calculated
+		mode: Import
+		expression:= GENERATESERIES(0, 100, 0.5)
+
+	measure 'Participant Hourly Pay P Value' = SELECTEDVALUE('Participant Hourly Pay P'[Participant Hourly Pay P])
+		lineageTag: 5a1d6f00-8b96-4ff4-a3b1-a33b998b1bf2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Participant Hourly Pay P'
+		dataType: Double
+		formatString:= \$#,0;(\$#,0);\$#,0
+		isDataTypeInferred: false
+		isNameInferred: false
+		lineageTag: 99dbb8f5-c4b6-4b92-b93f-6f297a95573d
+		sourceColumn: [Value]
+		summarizeBy: None
+
+		annotation SummarizationSetBy = User
+
+		extendedProperty ParameterMetadata =
+			{
+			  "version": 0
+			}
+
+	annotation PBI_Id = 5a47ba9f139e4c9a84c60c4d8c2ff1e7
+

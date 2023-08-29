@@ -1,0 +1,118 @@
+table calendar
+	lineageTag: 564f44e0-1d1b-4e0f-a9c8-71ba173e625b
+	ordinal: 14
+
+	partition 'calendar-d682640b-0b4e-4a46-8a8f-8c4bfc41b585' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    calendar_Table = db_bi_gold{[Name="calendar",Kind="Table"]}[Data]
+			in
+			    calendar_Table
+
+	column date
+		dataType: DateTime
+		formatString:= dd/mm/yyyy
+		isDataTypeInferred: false
+		lineageTag: 9487f284-436d-4414-9272-10a70f4a96ab
+		sourceColumn: date
+		sourceProviderType: date
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Workday_Name = IF(calendar[workday]=0,"Weekend","Weekday")
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 9bfab582-fe89-4362-8978-91d9d1635d44
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column workday
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 11c7caa1-cb44-4f6b-a5f2-00658ec82ae2
+		sourceColumn: workday
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_date
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 1cc964f9-b479-4871-bbea-09c475e76176
+		sourceColumn: week_date
+		sourceProviderType: date
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column week_number
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 2923c80c-2cbe-4e18-becb-29c873e74d1e
+		sourceColumn: week_number
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_number
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: e3e4f246-cee2-4589-9e9c-c272f83b939c
+		sourceColumn: month_number
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 34bf8541-f7e3-433f-95fc-c2d70371bed1
+		sourceColumn: month_name
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 9110370a-3dbb-4c4c-a1bb-a04cf61eaf71
+		sourceColumn: quarter
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: df7272b9-64f5-49b4-bdc8-bf75a5ed8c76
+		sourceColumn: year
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

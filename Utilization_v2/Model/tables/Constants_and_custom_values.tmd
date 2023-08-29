@@ -1,0 +1,29 @@
+table Constants_and_custom_values
+	lineageTag: c8c4a9ab-70ad-489d-a83e-ca5f388b3069
+	ordinal: 13
+
+	partition 'Constants_and_custom_values-b6cbbec8-9a26-4acb-a0ab-27f6c263e33b' = Calculated
+		mode: Import
+		expression:= DATATABLE( "My constant", INTEGER, {{1}})
+
+	measure 'FTE Cost ($/h fully loaded)' = 50
+		formatString:= 0
+		lineageTag: ce530d60-2468-4d12-9958-9f383d7afd9e
+
+	measure 'Standard work day (h)' = 8
+		formatString:= 0
+		lineageTag: f69eb2e3-8686-4f25-af3b-c153bdfe9c7d
+
+	column 'My constant'
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		isNameInferred: false
+		lineageTag: 418e6fb3-f698-4b44-966c-c8b5551a6280
+		sourceColumn: "[My constant]"
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_Id = 8da7dada15894d6dae89c4dedd57c2c1
+

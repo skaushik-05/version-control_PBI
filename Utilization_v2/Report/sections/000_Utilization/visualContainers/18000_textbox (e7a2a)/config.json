@@ -1,0 +1,56 @@
+{
+  "name": "e7a2ad179bebdc77859d",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 241.91964843877767,
+        "y": 141.22234059823666,
+        "z": 33000,
+        "width": 176,
+        "height": 25,
+        "tabOrder": 18000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Total participants count",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "color": "#757575"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

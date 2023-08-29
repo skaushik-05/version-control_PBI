@@ -1,0 +1,55 @@
+{
+  "name": "d629d3cbd6dea371c60e",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 858.75,
+        "y": 106.25,
+        "z": 42000,
+        "width": 15.625,
+        "height": 58.75,
+        "tabOrder": 27000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "shape",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "shape": [
+        {
+          "properties": {
+            "tileShape": {
+              "expr": {
+                "Literal": {
+                  "Value": "'line'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rotation": [
+        {
+          "properties": {
+            "shapeAngle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
