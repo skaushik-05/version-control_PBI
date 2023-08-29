@@ -1,0 +1,28 @@
+table 'Filter - Application'
+	lineageTag: e4725b33-b0c4-4479-8e90-d5519b8b86cd
+	ordinal: 7
+
+	partition 'Filter - Application-4acb412d-6124-4989-ad6c-a8b00733d821' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    filter_application_Table = db_bi_gold{[Name="filter_application",Kind="Table"]}[Data],
+			    #"Renamed Columns" = Table.RenameColumns(filter_application_Table,{{"filter_application_id", "Application ID"}})
+			in
+			    #"Renamed Columns"
+
+	column 'Application ID'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 9f0b8bf5-450a-4343-8ce7-fa3a33e355eb
+		sourceColumn: "Application ID"
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

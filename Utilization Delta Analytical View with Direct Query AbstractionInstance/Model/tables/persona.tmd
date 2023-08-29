@@ -1,0 +1,68 @@
+table persona
+	lineageTag: ef74794f-52a0-456b-9ca6-545f16a81e52
+	ordinal: 23
+
+	partition persona = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    applications_Table = db_bi_gold{[Name="personas",Kind="Table"]}[Data]
+			in
+			    applications_Table
+
+	column personas_id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 41a43ee8-aa9d-4a63-9ab4-f78df82b8b04
+		sourceColumn: personas_id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column persona_name
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 8e35578a-169a-4e3b-aee9-f0ee41a0fe36
+		sourceColumn: persona_name
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column persona_description
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 0f586c79-6dce-441f-aa34-45a911a5693d
+		sourceColumn: persona_description
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column abstraction_type
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1d06a6ac-e1f8-4551-be2b-43f6a4949409
+		sourceColumn: abstraction_type
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_anonymized
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 2a560fc4-d0f3-40a5-abd4-e71214e8c798
+		sourceColumn: is_anonymized
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

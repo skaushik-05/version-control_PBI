@@ -1,0 +1,31 @@
+table 'Expected Worktime/Day (Hrs)'
+	lineageTag: c3603ef1-9362-4f6b-b5fc-0e2751db9631
+	ordinal: 15
+
+	partition 'Expected Worktime/Day (Hrs)-1f044a2b-0300-421f-9284-87a8258c8273' = Calculated
+		mode: Import
+		expression:= GENERATESERIES(0, 12, 1)
+
+	measure 'Expected Worktime/Day (Hrs) Value' = SELECTEDVALUE('Expected Worktime/Day (Hrs)'[Expected Worktime/Day (Hrs)])
+		lineageTag: 565f2748-9562-4e95-a67a-98d5e8890b66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Expected Worktime/Day (Hrs)'
+		dataType: Double
+		formatString:= 0
+		isDataTypeInferred: false
+		isNameInferred: false
+		lineageTag: f0142e94-f447-47f9-9594-ea4c3135b2fe
+		sourceColumn: [Value]
+		summarizeBy: None
+
+		annotation SummarizationSetBy = User
+
+		extendedProperty ParameterMetadata =
+			{
+			  "version": 0
+			}
+
+	annotation PBI_Id = 9ba27ff9363c461b98f4542eda090035
+

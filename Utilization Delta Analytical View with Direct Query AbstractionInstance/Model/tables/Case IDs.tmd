@@ -1,0 +1,32 @@
+table 'Case IDs'
+	lineageTag: 7a90534e-4603-4e01-941d-d6802ae6b88f
+	ordinal: 25
+
+	partition 'Case IDs' = Calculated
+		mode: Import
+		expression:= CALCULATETABLE(SUMMARIZE(abstractioninstances, abstractioninstances[case_id],"Start Date",MIN(abstractioninstances[start_time])), abstractioninstances[case_id]<>BLANK())
+
+	column case_id
+		dataType: String
+		lineageTag: 7de9fb75-a8dc-4c2e-b04c-28ab23eade33
+		sourceColumn: abstractioninstances[case_id]
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: DateTime
+		formatString:= General Date
+		lineageTag: 1498d48f-d97d-4931-b268-11622f802522
+		sourceColumn: "[Start Date]"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_0e42e7b7-1de1-49c1-b567-da707c97f1c7'.'Date Hierarchy'
+			isDefault
+			relationship: '36cd8cac-749b-4f90-a3f3-c0963461b352'
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_Id = 8650aa96bb164d649ae43154dc22bcc4
+

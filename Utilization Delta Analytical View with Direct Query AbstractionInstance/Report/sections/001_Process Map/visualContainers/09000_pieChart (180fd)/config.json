@@ -1,0 +1,100 @@
+{
+  "name": "180fd2e04dc577388c26",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 280,
+        "y": 1875.7142857142858,
+        "z": 19000,
+        "width": 547.14285714285722,
+        "height": 230.00000000000003,
+        "tabOrder": 9000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "pieChart",
+    "projections": {
+      "Category": [
+        {
+          "queryRef": "events.activity_discovered_name",
+          "active": true
+        },
+        {
+          "queryRef": "events.case_id"
+        }
+      ],
+      "Y": [
+        {
+          "queryRef": "events.Average Processing Time (Hrs)"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "events",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "activity_discovered_name"
+          },
+          "Name": "events.activity_discovered_name",
+          "NativeReferenceName": "activity_discovered_name"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "case_id"
+          },
+          "Name": "events.case_id",
+          "NativeReferenceName": "case_id"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "Average Processing Time (Hrs)"
+          },
+          "Name": "events.Average Processing Time (Hrs)",
+          "NativeReferenceName": "Average Processing Time (Hrs)"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "e"
+                }
+              },
+              "Property": "Average Processing Time (Hrs)"
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true
+  }
+}

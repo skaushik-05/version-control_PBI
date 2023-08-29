@@ -1,0 +1,161 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "calendar",
+              "Type": 0
+            },
+            {
+              "Name": "e",
+              "Entity": "Expected Worktime/Day (Hrs)",
+              "Type": 0
+            },
+            {
+              "Name": "t",
+              "Entity": "Target Utilization (%)",
+              "Type": 0
+            },
+            {
+              "Name": "p",
+              "Entity": "Participant Hourly Pay ($)",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "f"
+                  }
+                },
+                "Property": "Workday_Name"
+              },
+              "Name": "filter_date_range.Workday_Name",
+              "NativeReferenceName": "Workday_Name"
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "f"
+                            }
+                          },
+                          "Property": "workday"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "e"
+                        }
+                      },
+                      "Property": "Expected Worktime/Day (Hrs)"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "3D"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "t"
+                        }
+                      },
+                      "Property": "Target Utilization (%)"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0.39999999999999997D"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
+                        }
+                      },
+                      "Property": "Participant Hourly Pay ($)"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "55D"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0
+                ]
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Window": {}
+            }
+          },
+          "IncludeEmptyGroups": true,
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

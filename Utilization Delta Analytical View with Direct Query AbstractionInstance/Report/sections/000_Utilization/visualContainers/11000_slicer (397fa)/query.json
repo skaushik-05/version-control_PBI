@@ -1,0 +1,52 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "e",
+              "Entity": "Expected Worktime/Day (Hrs)",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e"
+                  }
+                },
+                "Property": "Expected Worktime/Day (Hrs)"
+              },
+              "Name": "Expected Worktime/Day (Hrs).Expected Worktime/Day (Hrs)",
+              "NativeReferenceName": "Expected Worktime/Day (Hrs)"
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0
+                ]
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Sample": {}
+            }
+          },
+          "IncludeEmptyGroups": true,
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

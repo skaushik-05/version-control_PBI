@@ -1,0 +1,85 @@
+{
+  "name": "e4f006a13c0e4e450162",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 32.820512820512818,
+        "y": 120.34188034188033,
+        "z": 46000,
+        "width": 150.03663003663002,
+        "height": 89.08424908424908,
+        "tabOrder": 46000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "slicer",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "data_attributes.data_attributes_name",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "d",
+          "Entity": "data_attributes",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "d"
+              }
+            },
+            "Property": "data_attributes_name"
+          },
+          "Name": "data_attributes.data_attributes_name",
+          "NativeReferenceName": "Case Type"
+        }
+      ]
+    },
+    "columnProperties": {
+      "data_attributes.data_attributes_name": {
+        "displayName": "Case Type"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

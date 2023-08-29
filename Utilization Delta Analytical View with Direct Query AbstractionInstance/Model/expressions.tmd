@@ -1,0 +1,16 @@
+/// Databricks Server
+expression deltalake_server = "adb-7781892080050526.6.azuredatabricks.net" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: abdbd59a-cb05-4f07-b96f-9b01a9ffb72f
+
+	annotation PBI_ResultType = Text
+
+expression deltalake_httppath = "/sql/1.0/warehouses/a8aa5908f31feffb" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: b1d6e30e-b4f1-46d5-820e-ac33c47df534
+
+	annotation PBI_ResultType = Text
+
+expression deltalake_db_bi_gold = "qa2_bi_gold" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: d1899622-4569-43c9-be52-feea2f07aac2
+
+	annotation PBI_ResultType = Text
+

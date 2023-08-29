@@ -1,0 +1,74 @@
+{
+  "relationships": [
+    {
+      "source": "4a1e657933042c168394",
+      "target": "474d72b2a28b8d9408cc",
+      "type": 3
+    },
+    {
+      "source": "4a1e657933042c168394",
+      "target": "148baef62b5cab109772",
+      "type": 3
+    },
+    {
+      "source": "4a1e657933042c168394",
+      "target": "60c7ebdf61501bd9624a",
+      "type": 3
+    },
+    {
+      "source": "4a1e657933042c168394",
+      "target": "f19575ff0516e69e0a2e",
+      "type": 3
+    },
+    {
+      "source": "4a1e657933042c168394",
+      "target": "e1451b0b70708d8e10da",
+      "type": 3
+    },
+    {
+      "source": "0d77dcdfd0ab62637903",
+      "target": "46663fdf5908c5783921",
+      "type": 3
+    },
+    {
+      "source": "9b0c5712d54c41dac099",
+      "target": "46663fdf5908c5783921",
+      "type": 3
+    }
+  ],
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Group 121.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Group_1215327295365253528.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

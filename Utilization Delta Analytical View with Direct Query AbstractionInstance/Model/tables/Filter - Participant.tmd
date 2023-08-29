@@ -1,0 +1,28 @@
+table 'Filter - Participant'
+	lineageTag: 0b3f80b6-0bdf-4584-98d8-8cdd712e9dc5
+	ordinal: 9
+
+	partition 'Filter - Participant-a4a20009-4c9f-407a-94b4-68dee8c14950' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    filter_participant_Table = db_bi_gold{[Name="filter_participant",Kind="Table"]}[Data],
+			    #"Renamed Columns" = Table.RenameColumns(filter_participant_Table,{{"filter_participant_id", "Participant ID"}})
+			in
+			    #"Renamed Columns"
+
+	column 'Participant ID'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 808be339-228e-443c-a68c-82e2d6f67fbe
+		sourceColumn: "Participant ID"
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,418 @@
+table cases
+	lineageTag: 08b20014-578f-4096-a00b-cd9850877bb9
+	ordinal: 2
+
+	partition 'cases-861b1028-6d27-4bb8-b4bd-53344709bfda' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    cases_Table = db_bi_gold{[Name="cases",Kind="Table"]}[Data]
+			in
+			    cases_Table
+
+	measure 'Avg PT / Case (h)' =
+		
+		// Average per Case
+		DIVIDE(
+		    //Seconds to hours
+		    DIVIDE(SUM('cases'[processing_time]), 3600),
+		    DISTINCTCOUNT('cases'[cases_id])
+		)
+		lineageTag: e8a2f0c8-90a7-4344-83ed-d7287da8b2c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg TaT / Case (days)' =
+		
+		// Average per Case
+		DIVIDE(
+		    //Seconds to 24*hours
+		    DIVIDE(SUM('cases'[tat_time]), 24*3600),
+		    DISTINCTCOUNT('cases'[cases_id])
+		)
+		lineageTag: a843f0f0-80b0-401e-a419-58fb9176568a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg TaT / Case (h)' =
+		
+		// Average per Case
+		DIVIDE(
+		    //Seconds to hours
+		    DIVIDE(SUM('cases'[tat_time]), 3600),
+		    DISTINCTCOUNT('cases'[cases_id])
+		)
+		lineageTag: 47aa68c4-5df6-41b5-a187-d11fba3c4a29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg TaT / Case (min)' =
+		
+		// Average per Case
+		DIVIDE(
+		    //Seconds to mins
+		    DIVIDE(SUM('cases'[tat_time]), 60),
+		    DISTINCTCOUNT('cases'[cases_id])
+		)
+		lineageTag: b84536d1-2eed-4e89-be88-ce8fbd784daf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Automation Savings Opportunity' = [Average PT per Case (Min)] * 'Target Volume Per Qtr,'[Target Volume Per Qtr, Value] * SELECTEDVALUE('% Effort Automated'[% Effort Automated])*'Participant Hourly Pay P'[Participant Hourly Pay P Value]/60
+		formatString:= \$#,0;(\$#,0);\$#,0
+		lineageTag: be7bb241-4c83-4167-a130-f4ffedce1f2a
+
+	measure 'Activity Case Coverage' = DIVIDE(DISTINCTCOUNT('cases'[cases_id]), CALCULATE(DISTINCTCOUNT('cases'[cases_id]), ALLSELECTED(activityinstances[abstraction_level_alias_name])))
+		formatString:= 0.00%;-0.00%;0.00%
+		lineageTag: b7b1daaf-076d-4fc1-87de-376318ac3924
+
+	measure 'Clickstream Variable' = "https://customer.skan.ai/clickstream/caseid/"
+		lineageTag: 54f548f3-1117-4588-9fac-c7691e4af6d9
+
+	column cases_id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 3378b849-ced7-43e2-bdb8-497716d7bf66
+		sourceColumn: cases_id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_id_name
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 6cac08fd-23ac-47bb-87ba-5ed2963d8b8c
+		sourceColumn: case_id_name
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column processing_time
+		dataType: Int64
+		isDataTypeInferred: false
+		lineageTag: 2451a131-da26-457d-95f8-42ef46f65d4a
+		sourceColumn: processing_time
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tat_time
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 2f5b797c-4b46-4c4c-9d0d-a6a820efac50
+		sourceColumn: tat_time
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column wait_time
+		dataType: Int64
+		isDataTypeInferred: false
+		lineageTag: 24fbc73f-61d7-4356-aab0-073cf9b42c16
+		sourceColumn: wait_time
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column participants_distinct_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: b1110622-6c87-4503-a534-edcf5680bc5b
+		sourceColumn: participants_distinct_count
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column applications_distinct_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 14b403c6-5a86-4b18-8f7d-c5b42cc1e7fc
+		sourceColumn: applications_distinct_count
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: fb555428-2307-40a6-8e1e-9865425ebd51
+		sourceColumn: event_count
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column hw_event_profile
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 083e88d3-2154-4c87-bc9c-4a5de9ee094b
+		sourceColumn: hw_event_profile
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column participant_switch_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 76dcb3a1-5fa6-4b6f-9560-478988904d1e
+		sourceColumn: participant_switch_count
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column app_switch_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 310b33d5-6b77-4420-816c-b9495f4693d9
+		sourceColumn: app_switch_count
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_volume
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 58769c0e-b8f6-43b5-b7c3-d02c743d7c5a
+		sourceColumn: case_volume
+		sourceProviderType: int
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column start
+		dataType: DateTime
+		formatString:= General Date
+		isDataTypeInferred: false
+		lineageTag: b8e6baf7-b59f-4858-aa3e-f23b4ed67d6b
+		sourceColumn: start
+		sourceProviderType: datetime2
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: DateTime
+		formatString:= General Date
+		isDataTypeInferred: false
+		lineageTag: f2f17bb3-31e7-4426-aeca-0394161d1d00
+		sourceColumn: end
+		sourceProviderType: datetime2
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column processing_time_mins
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: caf6528a-3986-4184-8dd8-33046a93aad5
+		sourceColumn: processing_time_mins
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column processing_time_hrs
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: d474fec0-6369-4cba-8c1b-8c3bbc05a9b3
+		sourceColumn: processing_time_hrs
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column processing_time_days
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: b6baedad-b0a2-4ecb-a603-1e43a53c8b3f
+		sourceColumn: processing_time_days
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column tat_time_mins
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 585bd6dc-80e5-42ac-bae7-c92f5c9e35d0
+		sourceColumn: tat_time_mins
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column tat_time_hrs
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 5de27239-dace-41d6-8708-7b04661037fc
+		sourceColumn: tat_time_hrs
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column tat_time_days
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: a356d067-a887-46fd-be24-691172d036fb
+		sourceColumn: tat_time_days
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column wait_time_mins
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 9a87dcf7-9e48-46c8-a42d-7e8b9b8e6bce
+		sourceColumn: wait_time_mins
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column wait_time_hrs
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: b6065746-dda9-46a5-a58a-7cc6b099fb1a
+		sourceColumn: wait_time_hrs
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column wait_time_days
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: dcdb7c46-6026-4a8b-aac0-596a3f1286fb
+		sourceColumn: wait_time_days
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: d9526b86-39b7-4649-88e0-59390ec805e8
+		sourceColumn: activity_count
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column activityinstance_count
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 3ff25dda-21ed-4d8a-8bee-2ca59734c403
+		sourceColumn: activityinstance_count
+		sourceProviderType: bigint
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column pt_mins_bin
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 96b94045-a009-4da3-b21b-0ecd226778fe
+		sourceColumn: pt_mins_bin
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column pt_hrs_bin
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: af0cbafb-3210-467a-934a-104129c94457
+		sourceColumn: pt_hrs_bin
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column tat_hrs_bin
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 4c6b346d-5f8d-4294-a8bb-0523d176dba9
+		sourceColumn: tat_hrs_bin
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column tat_days_bin
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 3ab61a11-92e4-4e6e-a81c-b254867cae50
+		sourceColumn: tat_days_bin
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column wt_hrs_bin
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 50a237d9-459c-41d6-971b-deead510225c
+		sourceColumn: wt_hrs_bin
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clickstream = CONCATENATE([Clickstream Variable], [cases_id])
+		dataCategory: WebUrl
+		dataType: String
+		lineageTag: b30be54a-4466-4773-bd57-bd745abc5823
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Case ID Name (No Spaces)' = SUBSTITUTE([case_id_name]," ","%20")
+		dataType: String
+		lineageTag: a1dd2ecf-40cb-47b1-83f1-35458a9fa608
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

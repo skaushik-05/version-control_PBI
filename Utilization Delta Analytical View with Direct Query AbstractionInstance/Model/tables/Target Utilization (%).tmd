@@ -1,0 +1,29 @@
+table 'Target Utilization (%)'
+	lineageTag: a016eeef-36fa-4b06-96a7-033ec0e1ab41
+	ordinal: 16
+
+	partition 'Target Utilization (%)-94f81827-7914-40c3-a959-bc53469e2389' = Calculated
+		mode: Import
+		expression:= GENERATESERIES(0, 1.05, 0.05)
+
+	measure 'Target Utilization (%) Value' = SELECTEDVALUE('Target Utilization (%)'[Target Utilization (%)], 60)
+		formatString:= 0
+		lineageTag: af64bfa9-6cf8-4f59-a69b-4d30ce1b8255
+
+	column 'Target Utilization (%)'
+		dataType: Double
+		formatString:= 0%;-0%;0%
+		isNameInferred: false
+		lineageTag: 0e307c54-0098-4610-acc3-82322254e692
+		sourceColumn: [Value]
+		summarizeBy: None
+
+		annotation SummarizationSetBy = User
+
+		extendedProperty ParameterMetadata =
+			{
+			  "version": 0
+			}
+
+	annotation PBI_Id = 1bf5880ce4d54a368d53c73f85292dbf
+

@@ -1,0 +1,37 @@
+table participants
+	lineageTag: 1a10e152-35bb-4d5d-8c1d-02805e512a77
+	ordinal: 3
+
+	partition 'participants-15485757-099a-4dfd-a50b-c637763f14c0' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    participants_Table = db_bi_gold{[Name="participants",Kind="Table"]}[Data]
+			in
+			    participants_Table
+
+	column participants_id
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: d0ecc241-8f15-4a22-a8ef-cc525def397c
+		sourceColumn: participants_id
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column participant_name
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 8b126c3c-98ca-4220-a9ed-a4c7c72c0a37
+		sourceColumn: participant_name
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

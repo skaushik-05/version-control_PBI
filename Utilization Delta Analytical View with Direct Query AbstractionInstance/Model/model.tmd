@@ -1,0 +1,16 @@
+model Model
+	compatibilityLevel: 1567
+	culture: en-US
+	dataAccessOptions:
+		legacyRedirects
+		returnErrorValuesAsNull
+	dataSourceDefaultMaxConnections: 5
+	defaultPowerBIDataSourceVersion: PowerBI_V3
+	sourceQueryCulture: en-US
+
+annotation PBI_QueryOrder = ["applications","cases","participants","processes","data_attributes","Filter - Activity Name","Filter - Application","Filter - Case ID","Filter - Participant","Filter - Persona","Filter - Process","calendar","deltalake_server","deltalake_httppath","deltalake_db_bi_gold","Filter - Date Range","abstractioninstances","persona","participantworktime","applicationsmetrics"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.119.986.0 (23.07)
+

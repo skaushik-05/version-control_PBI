@@ -1,0 +1,56 @@
+{
+  "name": "4135a63d1600600e0e7a",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 874.84375558163492,
+        "y": 141.25004415282444,
+        "z": 39000,
+        "width": 108.125,
+        "height": 25,
+        "tabOrder": 28000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "By non-process",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

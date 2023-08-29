@@ -1,0 +1,29 @@
+table '% Effort Automated'
+	lineageTag: 221e3d25-eca4-47df-9d31-76fe050a297a
+	ordinal: 19
+
+	partition '% Effort Automated' = Calculated
+		mode: Import
+		expression:= GENERATESERIES(0, 1, 0.01)
+
+	measure '% Effort Automated Parameter' = SELECTEDVALUE('% Effort Automated'[% Effort Automated])
+		formatString:= 0.00%;-0.00%;0.00%
+		lineageTag: a29f3f26-eb34-4e80-9854-71342193919a
+
+	column '% Effort Automated'
+		dataType: Double
+		formatString:= 0.00%;-0.00%;0.00%
+		isNameInferred: false
+		lineageTag: c285ce6b-699b-4868-bf9c-5927464db675
+		sourceColumn: [Value]
+		summarizeBy: None
+
+		annotation SummarizationSetBy = User
+
+		extendedProperty ParameterMetadata =
+			{
+			  "version": 0
+			}
+
+	annotation PBI_Id = e77f7325aeef4b2da0213e4796e91af7
+

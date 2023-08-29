@@ -1,0 +1,57 @@
+{
+  "name": "3217fdeb0c8dd3c26149",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 28.333333333333336,
+        "y": 71,
+        "z": 28000,
+        "width": 125,
+        "height": 28.333333333333336,
+        "tabOrder": 18000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "F I L T E R S",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "Segoe UI",
+                      "color": "#a0a0a0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

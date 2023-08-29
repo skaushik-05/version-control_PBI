@@ -1,0 +1,363 @@
+culture 'en-US'
+	linguisticMetadata:
+		content:=
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "DynamicImprovement": "HighConfidence",
+			  "Entities": {
+			    "participants.participant_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "participants",
+			          "ConceptualProperty": "participant_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Participant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Participant Name": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Participants": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "applications.application_alias": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "applications",
+			          "ConceptualProperty": "application_alias"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "persona.personas_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "persona",
+			          "ConceptualProperty": "personas_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Persona ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "data_attributes.data_attributes_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "data_attributes",
+			          "ConceptualProperty": "data_attributes_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Case Type": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Case Status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "cases.cases_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "cases",
+			          "ConceptualProperty": "cases_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Case ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "cases.processing_time_mins": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "cases",
+			          "ConceptualProperty": "processing_time_mins"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Case PT (Min)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "cases.activityinstance_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "cases",
+			          "ConceptualProperty": "activityinstance_count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Activity Length": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "events.utilization_nonprocess": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "events",
+			          "ConceptualProperty": "Utilization (Non-Process)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "events.utilization_process": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "events",
+			          "ConceptualProperty": "Utilization (Process)"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "events.current_activity_alias_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "events",
+			          "ConceptualProperty": "current_activity_alias_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Activity": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "events.case_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "events",
+			          "ConceptualProperty": "case_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Case ID": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "activityinstances_summary.abstraction_level_alias_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "activityinstances_summary",
+			          "ConceptualProperty": "abstraction_level_alias_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Activity": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "activityinstances_summary.activities_savings_opportunity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "activityinstances_summary",
+			          "ConceptualProperty": "Activities Savings Opportunity"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Savings Oppty.": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "activityinstances_summary.activity_case_coverage_2": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "activityinstances_summary",
+			          "ConceptualProperty": "Activity Case Coverage 2"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Activity Case Coverage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "calendar.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "calendar",
+			          "ConceptualProperty": "date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "participantworktime.utilization_process": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "participantworktime",
+			          "ConceptualProperty": "Utilization (Process)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Process": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "participantworktime.utilization_nonprocess": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "participantworktime",
+			          "ConceptualProperty": "Utilization (Non-Process)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Non-Process": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: Json
+

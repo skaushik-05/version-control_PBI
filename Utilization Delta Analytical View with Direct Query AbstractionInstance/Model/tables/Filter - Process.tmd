@@ -1,0 +1,28 @@
+table 'Filter - Process'
+	lineageTag: 90028684-bd52-45d8-ab3c-cc3d89a4e0cc
+	ordinal: 11
+
+	partition 'Filter - Process-5fd06514-9f06-417e-8dcd-0da18b95c836' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    filter_process_Table = db_bi_gold{[Name="filter_process",Kind="Table"]}[Data],
+			    #"Renamed Columns" = Table.RenameColumns(filter_process_Table,{{"filter_process_id", "Process ID"}})
+			in
+			    #"Renamed Columns"
+
+	column 'Process ID'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: e5160173-6221-4e94-b1e2-1192b1378875
+		sourceColumn: "Process ID"
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

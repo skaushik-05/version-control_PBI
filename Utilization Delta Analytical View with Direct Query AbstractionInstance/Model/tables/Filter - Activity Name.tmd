@@ -1,0 +1,28 @@
+table 'Filter - Activity Name'
+	lineageTag: 4f07a1e7-3c9e-43f4-beaa-a41be8d52b84
+	ordinal: 6
+
+	partition 'Filter - Activity Name-8eb4bae7-66c3-44e0-8658-9688fee2e60a' = M
+		mode: DirectQuery
+		expression:=
+			let
+			    Source = Databricks.Catalogs("" & deltalake_server & "", "" & deltalake_httppath & "", [Catalog = "", Database = ""]),
+			    hive_metastore_Database = Source{[Name="hive_metastore",Kind="Database"]}[Data],
+			    db_bi_gold = hive_metastore_Database{[Name="" & deltalake_db_bi_gold & "",Kind="Schema"]}[Data],
+			    filter_activity_Table = db_bi_gold{[Name="filter_activity",Kind="Table"]}[Data],
+			    #"Renamed Columns" = Table.RenameColumns(filter_activity_Table,{{"filter_activity_id", "Activity Name"}})
+			in
+			    #"Renamed Columns"
+
+	column 'Activity Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 95fb4500-d469-4cff-b2dc-04c6b3073780
+		sourceColumn: "Activity Name"
+		sourceProviderType: nvarchar(65535)
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+
