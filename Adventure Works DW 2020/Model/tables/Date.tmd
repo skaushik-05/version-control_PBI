@@ -1,0 +1,134 @@
+/// Filters the Sales table using sales order date
+table Date
+	dataCategory: Time
+	lineageTag: e4013b6a-9ae4-4c1a-8791-5e74d37e0355
+	ordinal: 2
+
+	partition 'Date-6302b3e1-4d31-40e4-b909-ba364d21aa87' = M
+		mode: Import
+		expression:=
+			let
+			    Source = Sql.Database(SqlServerInstance, SqlServerDatabase),
+			    dbo_DimDate = Source{[Schema="dbo",Item="DimDate"]}[Data],
+			    #"Removed Other Columns" = Table.SelectColumns(dbo_DimDate,{"DateKey", "FullDateAlternateKey", "DayNumberOfMonth", "MonthNumberOfYear", "CalendarYear", "FiscalQuarter", "FiscalYear"}),
+			    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"FullDateAlternateKey", "Date"}, {"FiscalYear", "Fiscal Year"},{"MonthNumberOfYear","Month Number Of Year"}}),
+			    #"Added FY Prefix" = Table.TransformColumns(#"Renamed Columns", {{"Fiscal Year", each "FY" & Text.From(_, "en-US"), type text}}),
+			    #"Added Fiscal Quarter" = Table.AddColumn(#"Added FY Prefix", "Fiscal Quarter", each [Fiscal Year] & " Q" & Number.ToText([FiscalQuarter])),
+			    #"Added Month" = Table.AddColumn(#"Added Fiscal Quarter", "Month", each (Number.ToText([CalendarYear]) & " " & Date.ToText([Date], "MMM", Culture)), type text),
+			    #"Added Full Date" = Table.AddColumn(#"Added Month", "Full Date", each [Month] & ", " & Text.PadStart(Number.ToText([DayNumberOfMonth]), 2, "0")),
+			    #"Added MonthKey" = Table.AddColumn(#"Added Full Date", "MonthKey", each ([CalendarYear] * 100) + [Month Number Of Year]),
+			    #"Removed Other Columns1" = Table.SelectColumns(#"Added MonthKey",{"DateKey", "Date", "Month Number Of Year", "Fiscal Year", "Fiscal Quarter", "Month", "Full Date", "MonthKey"}),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns1",{{"Fiscal Quarter", type text}, {"Month", type text}, {"Full Date", type text}, {"MonthKey", Int64.Type}})
+			in
+			    #"Changed Type"
+
+	column DateKey
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		isHidden
+		lineageTag: 14e6e08d-aeb5-4972-b342-600c38be7318
+		sourceColumn: DateKey
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+		changedProperty = IsHidden
+
+	column Date
+		dataType: DateTime
+		formatString:= Short Date
+		isDataTypeInferred: false
+		isKey
+		lineageTag: 3e8557ea-a4d9-4946-987a-95a88ce58dc1
+		sourceColumn: Date
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Fiscal Year'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1bdafa4e-c90f-4d13-8853-3670dc723351
+		sourceColumn: "Fiscal Year"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 5debd2cc-35b7-463e-9b76-a1ce61282fc8
+		sourceColumn: "Fiscal Quarter"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 0a6b6612-8154-44e9-834d-e609554f2994
+		sortByColumn: MonthKey
+		sourceColumn: Month
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthKey
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		isHidden
+		lineageTag: a368e179-917e-445b-8b9f-034b84b4bbcc
+		sourceColumn: MonthKey
+		summarizeBy: Count
+
+		annotation SummarizationSetBy = Automatic
+
+		changedProperty = IsHidden
+
+	column 'Full Date'
+		dataType: String
+		isDataTypeInferred: false
+		isDefaultLabel
+		lineageTag: 8860d847-d5b7-4ff6-8204-26150d71bcef
+		sourceColumn: "Full Date"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number Of Year'
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 675ad488-967c-4722-8d5e-6bfd1bbad235
+		sourceColumn: "Month Number Of Year"
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy Fiscal
+		lineageTag: dbd52c4e-3f7f-4dc4-980c-8bb01cc8c325
+
+		level Year
+			column: 'Fiscal Year'
+			lineageTag: a473f165-afd4-41cb-8428-994b3baf411f
+
+		level Quarter
+			column: 'Fiscal Quarter'
+			lineageTag: 3c1564bc-b864-478e-aa7f-4edd56436165
+
+		level Month
+			column: Month
+			lineageTag: 13544ad0-ac45-49c1-b5cf-af3efb5d51b5
+
+		level Date
+			column: 'Full Date'
+			lineageTag: 86ccc35e-7925-4a78-b754-b712ad2acee9
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
