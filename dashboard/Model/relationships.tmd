@@ -1,0 +1,52 @@
+relationship '20be5bff-4b08-4183-b1b4-f278af8cfe10'
+	fromColumn: 'Weekly Status'.'Est. Start Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_f8f658c3-4078-4f98-9e9c-3fcabbe98808'.Date
+
+relationship '8193fe1d-eec2-4174-92d5-6f36ead9be5c'
+	fromColumn: 'Weekly Status'.'Est. End Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_f63751bd-1938-40ba-b92a-cacc4a5f3580'.Date
+
+relationship '470af3c7-4de0-4d71-a047-929bd49c6557'
+	fromColumn: Trend.Week
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_456bf93d-3dd6-41c6-97c2-a7c4634dbc0b'.Date
+
+relationship '97b25dad-7364-43d1-8b61-9551ee050e2b'
+	fromColumn: Trend.'Est. Start Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_7984a11b-4ce3-4574-8081-dfc6c1a222b1'.Date
+
+relationship '2d8e13df-35cc-4937-a18b-a5d5c9da44f2'
+	fromColumn: Trend.'Est. End Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_99d56d4a-6b3b-4eeb-9c42-5f01d2c58d09'.Date
+
+relationship '2c08f57a-f9f5-4ca5-985b-fbbb32442ab3'
+	fromColumn: Sheet4.'Est. End Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'.Date
+
+relationship '57729b04-ba5b-4cfc-9315-c33c9d115400'
+	fromColumn: Sheet1.'Est. Start Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_39f91519-07da-4205-9ccf-91e84820f926'.Date
+
+relationship '4c4200e7-b115-4f49-95f5-b38a43bfe887'
+	fromColumn: Sheet1.'Est. End Date'
+	joinOnDateBehavior: DatePartOnly
+	toColumn: 'LocalDateTable_3dd17449-57c0-49d7-8742-f3bcf7a0cc5b'.Date
+
+relationship '612cb9ee-64ba-40ab-8083-b08db5bc3379'
+	fromColumn: Sheet4.'Project Name'
+	toColumn: 'Weekly Status'.'Project Name'
+
+relationship '910c5d74-e5ff-4b27-b2a1-7c3a1ec23d01'
+	fromColumn: Trend.'Project Name'
+	toColumn: 'Weekly Status'.'Project Name'
+
+relationship '04f6e970-1034-4cf2-82ce-a08c4846b19f'
+	fromColumn: Sheet1.'Project Name'
+	toColumn: 'Weekly Status'.'Project Name'
+
