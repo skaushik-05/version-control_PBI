@@ -1,0 +1,100 @@
+{
+  "name": "74410b1268161a8a4734",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 9.5973221757322182,
+        "y": 0,
+        "z": 0,
+        "width": 581.32351464435146,
+        "height": 279.6933891213389,
+        "tabOrder": 0
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "funnel",
+    "projections": {
+      "Category": [
+        {
+          "queryRef": "Sheet1.TO",
+          "active": true
+        }
+      ],
+      "Y": [
+        {
+          "queryRef": "Sum(Sheet4.Amount)"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "s",
+          "Entity": "Sheet1",
+          "Type": 0
+        },
+        {
+          "Name": "s1",
+          "Entity": "Sheet4",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "s"
+              }
+            },
+            "Property": "TO"
+          },
+          "Name": "Sheet1.TO",
+          "NativeReferenceName": "TO"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "s1"
+                  }
+                },
+                "Property": "Amount"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(Sheet4.Amount)",
+          "NativeReferenceName": "Sum of Amount"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Aggregation": {
+              "Expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Source": "s1"
+                    }
+                  },
+                  "Property": "Amount"
+                }
+              },
+              "Function": 0
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true
+  }
+}

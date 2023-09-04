@@ -277,65 +277,6 @@
         "Name": "Trend.Work At Risk ",
         "Type": 2048
       }
-    ],
-    "Filters": [
-      {
-        "type": 2,
-        "expression": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Trend"
-                  }
-                },
-                "Property": "Age_Red"
-              }
-            },
-            "Function": 0
-          }
-        }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "SSM POC"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "TO Requestor"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "Work At Risk "
-          }
-        }
-      }
     ]
   },
   "visualElements": [

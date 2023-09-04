@@ -1,19 +1,20 @@
-table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
+table 'LocalDateTable_39f91519-07da-4205-9ccf-91e84820f926'
 	isHidden
-	lineageTag: cd1730ad-8b8d-4955-96f6-8c3e72381853
+	lineageTag: 7e718b06-cceb-4dbc-a271-6697f8099694
 	showAsVariationsOnly
-	ordinal: 10
+	ordinal: 12
 
-	partition 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae' = Calculated
+	partition 'LocalDateTable_39f91519-07da-4205-9ccf-91e84820f926' = Calculated
 		mode: Import
-		expression:= Calendar(Date(Year(MIN('Sheet4'[Est. End Date])), 1, 1), Date(Year(MAX('Sheet4'[Est. End Date])), 12, 31))
+		expression:= Calendar(Date(Year(MIN('Sheet1'[Est. Start Date])), 1, 1), Date(Year(MAX('Sheet1'[Est. Start Date])), 12, 31))
 
 	column Date
 		dataCategory: PaddedDateTableDates
 		dataType: DateTime
-		formatString:= General Date
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: 3e466421-a7be-4548-8e26-854113aae35a
+		isNameInferred: false
+		lineageTag: 9a791842-cc93-4e7b-a418-a88b95924c82
 		sourceColumn: [Date]
 		summarizeBy: None
 
@@ -22,9 +23,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column Year = YEAR([Date])
 		dataCategory: Years
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: 833a68bf-764e-4f4c-9daa-c548270cb355
+		lineageTag: 013bc5c6-4901-4418-b8cc-ee0156024e3b
 		summarizeBy: None
 
 		annotation SummarizationSetBy = User
@@ -34,9 +35,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column MonthNo = MONTH([Date])
 		dataCategory: MonthOfYear
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: d1ecd13f-f694-4d5f-be97-166809b25091
+		lineageTag: 7601b42f-10e3-419e-a8ea-a443005f1cba
 		summarizeBy: None
 
 		annotation SummarizationSetBy = User
@@ -46,8 +47,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column Month = FORMAT([Date], "MMMM")
 		dataCategory: Months
 		dataType: String
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: 59bacdfb-c419-4d51-b552-03dbb6e35054
+		lineageTag: ca7c3015-b84b-4031-a066-149cda2afd27
 		sortByColumn: MonthNo
 		summarizeBy: None
 
@@ -58,9 +60,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column QuarterNo = INT(([MonthNo] + 2) / 3)
 		dataCategory: QuarterOfYear
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: 194d6a31-d3d5-4500-a630-e5bbbc84d74e
+		lineageTag: cbf256e1-b387-4bd8-9e7e-4b1f7c433e91
 		summarizeBy: None
 
 		annotation SummarizationSetBy = User
@@ -70,8 +72,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column Quarter = "Qtr " & [QuarterNo]
 		dataCategory: Quarters
 		dataType: String
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: 846b01f5-d8ab-4c10-a078-cea64ee906f1
+		lineageTag: 70534142-d85e-4e3a-8549-aafc2ae1b0be
 		sortByColumn: QuarterNo
 		summarizeBy: None
 
@@ -82,9 +85,9 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 	column Day = DAY([Date])
 		dataCategory: DayOfMonth
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
-		lineageTag: ae13cf30-41fa-460b-aa90-287203511d21
+		lineageTag: 07f2c7d1-bf18-45a4-b220-f512e1ea60ad
 		summarizeBy: None
 
 		annotation SummarizationSetBy = User
@@ -92,23 +95,23 @@ table 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'
 		annotation TemplateId = Day
 
 	hierarchy 'Date Hierarchy'
-		lineageTag: 9753b8f4-5e84-407c-a461-3da1f9bce539
+		lineageTag: 5b1caea0-8e95-4cc0-bc34-07a59d6f6034
 
 		level Year
 			column: Year
-			lineageTag: 1005dfa6-885e-45ea-8f5a-d59ec0e8338b
+			lineageTag: f003fa3e-2ff0-4262-a924-c9d5571f6805
 
 		level Quarter
 			column: Quarter
-			lineageTag: 58279104-e490-4a93-80d4-847cf820a48c
+			lineageTag: bfbb401c-3335-4da6-b8b0-bcd4edaf430d
 
 		level Month
 			column: Month
-			lineageTag: bbcd2721-5dbb-4598-90bd-9ed0e536e785
+			lineageTag: a0d2f4c1-c8ce-4cd4-befa-36ad15df51f9
 
 		level Day
 			column: Day
-			lineageTag: 9f47e7a6-3478-4719-8a9b-ce65ecf42fcb
+			lineageTag: cf080cb4-8aa7-481c-8f39-47be4261a910
 
 		annotation TemplateId = DateHierarchy
 

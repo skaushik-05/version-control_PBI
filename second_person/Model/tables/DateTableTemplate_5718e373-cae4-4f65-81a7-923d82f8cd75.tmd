@@ -11,8 +11,9 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column Date
 		dataCategory: PaddedDateTableDates
 		dataType: DateTime
-		formatString:= General Date
+		isDataTypeInferred: false
 		isHidden
+		isNameInferred: false
 		lineageTag: 42791c42-8f76-47fb-b4ee-ce97edcfecca
 		sourceColumn: [Date]
 		summarizeBy: None
@@ -22,7 +23,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column Year = YEAR([Date])
 		dataCategory: Years
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: d2f71ee0-b0bc-45f7-8b8e-e44c8fc42a0d
 		summarizeBy: None
@@ -34,7 +35,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column MonthNo = MONTH([Date])
 		dataCategory: MonthOfYear
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: 02f8651f-9af7-499d-9083-56bb9ef726ea
 		summarizeBy: None
@@ -46,6 +47,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column Month = FORMAT([Date], "MMMM")
 		dataCategory: Months
 		dataType: String
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: 2eedd670-33ff-4a8a-8fb1-de664e49f869
 		sortByColumn: MonthNo
@@ -58,7 +60,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column QuarterNo = INT(([MonthNo] + 2) / 3)
 		dataCategory: QuarterOfYear
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: 25bd222b-3c22-420b-a022-333daffdd83c
 		summarizeBy: None
@@ -70,6 +72,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column Quarter = "Qtr " & [QuarterNo]
 		dataCategory: Quarters
 		dataType: String
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: b6cf357b-6316-483e-af8a-32ed01e713d0
 		sortByColumn: QuarterNo
@@ -82,7 +85,7 @@ table 'DateTableTemplate_5718e373-cae4-4f65-81a7-923d82f8cd75'
 	column Day = DAY([Date])
 		dataCategory: DayOfMonth
 		dataType: Int64
-		formatString:= 0
+		isDataTypeInferred: false
 		isHidden
 		lineageTag: 7f736101-8a63-40b3-96da-6a02ee928a7e
 		summarizeBy: None

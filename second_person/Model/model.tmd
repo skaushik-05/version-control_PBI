@@ -11,5 +11,5 @@ annotation PBI_QueryOrder = ["Weekly Status","Trend","Sheet4","Sheet1","File Gui
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.120.731.0 (23.08)
+annotation PBIDesktopVersion = 2.120.963.0 (23.08)
 

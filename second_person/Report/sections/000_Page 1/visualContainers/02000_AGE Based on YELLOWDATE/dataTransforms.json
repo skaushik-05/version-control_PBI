@@ -277,65 +277,6 @@
         "Name": "Sum(Trend.Age_Yellow)",
         "Type": 1
       }
-    ],
-    "Filters": [
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "SSM POC"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "TO Requestor"
-          }
-        }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Trend"
-              }
-            },
-            "Property": "Work At Risk "
-          }
-        }
-      },
-      {
-        "type": 2,
-        "expression": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Trend"
-                  }
-                },
-                "Property": "Age_Yellow"
-              }
-            },
-            "Function": 0
-          }
-        }
-      }
     ]
   },
   "visualElements": [

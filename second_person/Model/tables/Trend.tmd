@@ -186,6 +186,7 @@ table Trend
 
 	column Age_Red = ('Trend'[Red since]-TODAY())*-1
 		dataType: Double
+		isDataTypeInferred: false
 		lineageTag: 6d0f4f93-c1e0-4349-817e-51ecfe36661e
 		summarizeBy: Sum
 
@@ -199,6 +200,7 @@ table Trend
 
 	column Age_Yellow = ('Trend'[Yellow since]-TODAY())*-1
 		dataType: Double
+		isDataTypeInferred: false
 		lineageTag: de33017e-2198-460e-a053-bf27a9d88c8f
 		summarizeBy: Sum
 
@@ -207,6 +209,4 @@ table Trend
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	annotation PBI_ResultType = Table
-
-	annotation PBI_NavigationStepName = Navigation
 
