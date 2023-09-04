@@ -1,0 +1,161 @@
+table Sheet1
+	lineageTag: daf7b60f-e5af-41b9-ac5d-04c22f15d4f0
+	ordinal: 11
+
+	partition Sheet1 = M
+		mode: Import
+		expression:=
+			let
+			    Source = Excel.Workbook(File.Contents("C:\Users\skaus\Downloads\0825_KB_Professional Services.xlsx"), null, true),
+			    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+			    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Vendor", type text}, {"Project Name", type text}, {"SoCo Id", type any}, {"Est. Start Date", type date}, {"Est. End Date", type date}, {"Amount", type number}, {"TO Requestor", type text}, {"Work At Risk ", type text}, {"TO", type text}, {"Existing PO?", type text}, {"Current Status", type text}, {"Column12", type any}, {"TO Work", type any}, {"Column14", type any}})
+			in
+			    #"Changed Type"
+
+	column Vendor
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 005d86b2-c24f-49ff-bfca-b5075eadc20e
+		sourceColumn: Vendor
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 942003e4-02c9-4051-a377-823bc5601634
+		sourceColumn: "Project Name"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SoCo Id'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 889b3e28-6df8-4754-bbbf-5e24cb0b06a7
+		sourceColumn: "SoCo Id"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est. Start Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: bc33f3ef-bbdd-4c30-af07-77383f659fa3
+		sourceColumn: "Est. Start Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_39f91519-07da-4205-9ccf-91e84820f926'.'Date Hierarchy'
+			isDefault
+			relationship: '57729b04-ba5b-4cfc-9315-c33c9d115400'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Est. End Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: c4362d67-5b53-40ae-8525-53f77dfe9376
+		sourceColumn: "Est. End Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_3dd17449-57c0-49d7-8742-f3bcf7a0cc5b'.'Date Hierarchy'
+			isDefault
+			relationship: '4c4200e7-b115-4f49-95f5-b38a43bfe887'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 0e790634-d0b1-45a1-b6e1-31aa877404aa
+		sourceColumn: Amount
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TO Requestor'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 7c1c5e29-313f-4c9d-b5a4-17d1e8d94ace
+		sourceColumn: "TO Requestor"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work At Risk '
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 6c04a017-ff73-458e-839c-46c12bb1dbf4
+		sourceColumn: "Work At Risk "
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column TO
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 3328ddeb-3eff-4cf0-a37c-a495dda5c3b7
+		sourceColumn: TO
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Existing PO?'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 33620c99-14a2-407d-9a16-757502def63a
+		sourceColumn: "Existing PO?"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: e097f27f-6413-426b-893e-72ae813b8a21
+		sourceColumn: "Current Status"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column12
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 097740e3-9bdd-44ff-882d-38864d0e44f2
+		sourceColumn: Column12
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TO Work'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: df1620db-5618-4fae-957b-4a79d88c5609
+		sourceColumn: "TO Work"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column14
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 2820f487-599e-41cd-9a62-fcc94639b5d4
+		sourceColumn: Column14
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

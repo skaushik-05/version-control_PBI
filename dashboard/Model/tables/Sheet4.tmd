@@ -1,0 +1,145 @@
+table Sheet4
+	lineageTag: d8df2262-0e5e-43ee-a98c-d60c16127ea5
+	ordinal: 9
+
+	partition Sheet4 = M
+		mode: Import
+		expression:=
+			let
+			    Source = Excel.Workbook(File.Contents("C:\Users\skaus\Downloads\0825_KB_Professional Services.xlsx"), null, true),
+			    Sheet4_Sheet = Source{[Item="Sheet4",Kind="Sheet"]}[Data],
+			    #"Promoted Headers" = Table.PromoteHeaders(Sheet4_Sheet, [PromoteAllScalars=true]),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Project Name", type text}, {"SoCo #", type any}, {"Est. Start Date", type any}, {"Est. End Date", type date}, {"Amount", type number}, {"TO Manager", type text}, {"Existing PO?", type text}, {"CRM ID", Int64.Type}, {"Status", type text}, {"Current Status", type text}, {"SoCo Task Owner", type any}, {"Work At Risk", type any}, {"Column13", type any}})
+			in
+			    #"Changed Type"
+
+	column 'Project Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: d34ec7ae-998d-4d00-b6be-56344441fdd6
+		sourceColumn: "Project Name"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SoCo #'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 16283420-812c-4922-a958-190115e3aa1a
+		sourceColumn: "SoCo #"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est. Start Date'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 454e93c2-85b3-41e5-85f7-4d2c0eb3b36c
+		sourceColumn: "Est. Start Date"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est. End Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 84636da0-f09e-43e4-a711-824310fd75cc
+		sourceColumn: "Est. End Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_767c28de-6a74-47c5-a2f1-5837512862ae'.'Date Hierarchy'
+			isDefault
+			relationship: '2c08f57a-f9f5-4ca5-985b-fbbb32442ab3'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 4a249982-23f8-475d-9355-eea1818a64fb
+		sourceColumn: Amount
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TO Manager'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 650a5cb8-b1f3-4b19-b54a-3cb87d131c74
+		sourceColumn: "TO Manager"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Existing PO?'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 8a64a449-230b-4005-bbb1-45935c603864
+		sourceColumn: "Existing PO?"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CRM ID'
+		dataType: Int64
+		formatString:= 0
+		isDataTypeInferred: false
+		lineageTag: 2bb2eb70-7fb5-4842-8f5e-310755a4491e
+		sourceColumn: "CRM ID"
+		summarizeBy: Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 3f0c38c1-e753-4dd9-bacd-8cac2cdd6437
+		sourceColumn: Status
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: d5ea85fa-5211-44fc-b5c1-b7c9710b92cb
+		sourceColumn: "Current Status"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SoCo Task Owner'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: a1f61156-90d4-407c-bfb0-f27b09bde4ba
+		sourceColumn: "SoCo Task Owner"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work At Risk'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: f4aa23d7-f8bd-40a0-bbfd-ce91f03dc265
+		sourceColumn: "Work At Risk"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column13
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 922a356a-d685-46f7-96eb-d9d12e16d035
+		sourceColumn: Column13
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

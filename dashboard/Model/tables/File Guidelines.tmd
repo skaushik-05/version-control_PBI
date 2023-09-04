@@ -1,0 +1,80 @@
+table 'File Guidelines'
+	lineageTag: df85687b-73a7-4f95-9ccb-5012d6bbad9f
+	ordinal: 14
+
+	partition 'File Guidelines' = M
+		mode: Import
+		expression:=
+			let
+			    Source = Excel.Workbook(File.Contents("C:\Users\skaus\Downloads\0825_KB_Professional Services.xlsx"), null, true),
+			    #"File Guidelines_Sheet" = Source{[Item="File Guidelines",Kind="Sheet"]}[Data],
+			    #"Promoted Headers" = Table.PromoteHeaders(#"File Guidelines_Sheet", [PromoteAllScalars=true]),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Col Name", type text}, {"What does that mean?", type text}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type text}, {"Column7", type text}})
+			in
+			    #"Changed Type"
+
+	column 'Col Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: f6f9be7b-ad3c-4a18-ad6a-303c665d4ce9
+		sourceColumn: "Col Name"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'What does that mean?'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: b102f726-3645-434f-b59c-5b9a40b6934a
+		sourceColumn: "What does that mean?"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column3
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: ba3e2596-e023-4baa-9c22-7298718bc20d
+		sourceColumn: Column3
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column4
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: b03b6c65-b242-4b0d-9b86-90d23fdd11f5
+		sourceColumn: Column4
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column5
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 4445408d-b13a-43d3-8399-27e9d50adac3
+		sourceColumn: Column5
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column6
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1f7605e5-298d-41ab-8349-05fbfec0b747
+		sourceColumn: Column6
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 026020e5-b9e4-4743-96c8-58424b9ebd33
+		sourceColumn: Column7
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+

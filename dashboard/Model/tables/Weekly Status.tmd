@@ -1,0 +1,172 @@
+table 'Weekly Status'
+	lineageTag: 37a899bb-566d-49ae-91cf-677ce4490dca
+	ordinal: 1
+
+	partition 'Weekly Status' = M
+		mode: Import
+		expression:=
+			let
+			    Source = Excel.Workbook(File.Contents("C:\Users\skaus\Downloads\0825_KB_Professional Services.xlsx"), null, true),
+			    #"Weekly Status_Sheet" = Source{[Item="Weekly Status",Kind="Sheet"]}[Data],
+			    #"Promoted Headers" = Table.PromoteHeaders(#"Weekly Status_Sheet", [PromoteAllScalars=true]),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Vendor", type text}, {"Project Name", type text}, {"SoCo Id", type any}, {"Est. Start Date", type date}, {"Est. End Date", type date}, {"Amount", type number}, {"TO Requestor", type text}, {"Work At Risk ", type text}, {"TO", type text}, {"Existing PO?", type text}, {"Current Status#(lf)(What needs to happen to get it out of risk?)", type text}, {"SSM POC", type text}, {"Yellow since", type any}, {"Red since", type any}, {"TO Work", type any}})
+			in
+			    #"Changed Type"
+
+	column Vendor
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: e0043309-9b9b-4a18-ab0f-0daf3843516a
+		sourceColumn: Vendor
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1c70b1cc-6be3-4b55-8016-6c483ad8fcb1
+		sourceColumn: "Project Name"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SoCo Id'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: fd8739d1-2b80-4a7a-86de-06d2320b737f
+		sourceColumn: "SoCo Id"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est. Start Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 72291744-f85e-4ee0-b73d-ff155b145733
+		sourceColumn: "Est. Start Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_f8f658c3-4078-4f98-9e9c-3fcabbe98808'.'Date Hierarchy'
+			isDefault
+			relationship: '20be5bff-4b08-4183-b1b4-f278af8cfe10'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Est. End Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 95f19e5c-b2de-4d57-9806-5bb552e101a9
+		sourceColumn: "Est. End Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_f63751bd-1938-40ba-b92a-cacc4a5f3580'.'Date Hierarchy'
+			isDefault
+			relationship: '8193fe1d-eec2-4174-92d5-6f36ead9be5c'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 8d0c3281-ad90-4c06-ae45-8c41c3b1b73e
+		sourceColumn: Amount
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TO Requestor'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: bb182250-c8c2-499e-89b1-94f92c8bd289
+		sourceColumn: "TO Requestor"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work At Risk '
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: d60b116b-6980-4357-a150-c4e5fb5e584f
+		sourceColumn: "Work At Risk "
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column TO
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 0012168f-949c-4e73-9053-798de92d0f08
+		sourceColumn: TO
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Existing PO?'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: bac9f5ae-7904-4955-a468-2d90d767e5bf
+		sourceColumn: "Existing PO?"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status(What needs to happen to get it out of risk?)'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 19f77687-551b-49b9-b442-9d72ee0c6360
+		sourceColumn: "Current Status(What needs to happen to get it out of risk?)"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SSM POC'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: f8d725b7-2d48-4baa-bb51-dde54ca13b5b
+		sourceColumn: "SSM POC"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Yellow since'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: a97a3b42-797d-410e-b54e-62725498401d
+		sourceColumn: "Yellow since"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Red since'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: e0780e13-a293-434c-aacc-f1899583f4fa
+		sourceColumn: "Red since"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TO Work'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 924287b8-8b65-4a92-854d-a68b4b678b1e
+		sourceColumn: "TO Work"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

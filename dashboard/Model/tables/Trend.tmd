@@ -1,0 +1,212 @@
+table Trend
+	lineageTag: 21517f10-ae4e-4f37-9856-6d7dbe1e8f26
+	ordinal: 5
+
+	partition Trend = M
+		mode: Import
+		expression:=
+			let
+			    Source = Excel.Workbook(File.Contents("C:\Users\skaus\Downloads\0825_KB_Professional Services.xlsx"), null, true),
+			    Trend_Sheet = Source{[Item="Trend",Kind="Sheet"]}[Data],
+			    #"Promoted Headers" = Table.PromoteHeaders(Trend_Sheet, [PromoteAllScalars=true]),
+			    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Week", type date}, {"Vendor", type text}, {"Project Name", type text}, {"SoCo Id", type any}, {"Est. Start Date", type date}, {"Est. End Date", type date}, {"Amount", type number}, {"TO Requestor", type text}, {"Work At Risk ", type text}, {"TO", type text}, {"Existing PO?", type text}, {"Current Status#(lf)(What needs to happen to get it out of risk?)", type text}, {"SSM POC", type text}, {"Yellow since", type any}, {"Red since", type any}, {"TO Work", type any}}),
+			    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Red since] <> null and [Red since] <> "N/A"))
+			in
+			    #"Filtered Rows"
+
+	column Week
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: bcdff66c-cc7e-4710-9915-6516e9393490
+		sourceColumn: Week
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_456bf93d-3dd6-41c6-97c2-a7c4634dbc0b'.'Date Hierarchy'
+			isDefault
+			relationship: '470af3c7-4de0-4d71-a047-929bd49c6557'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Vendor
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: e963fab9-a4e8-40f2-baf5-44c3cda07c4e
+		sourceColumn: Vendor
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1f9b32df-8c66-4bd0-9380-516bd5994f85
+		sourceColumn: "Project Name"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SoCo Id'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 219cc368-aeb1-4605-8c66-33bab2f93abb
+		sourceColumn: "SoCo Id"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est. Start Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 61584fa6-7911-478e-a9e8-5f5bacea3f22
+		sourceColumn: "Est. Start Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_7984a11b-4ce3-4574-8081-dfc6c1a222b1'.'Date Hierarchy'
+			isDefault
+			relationship: '97b25dad-7364-43d1-8b61-9551ee050e2b'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Est. End Date'
+		dataType: DateTime
+		formatString:= Long Date
+		isDataTypeInferred: false
+		lineageTag: 761c2121-ecd4-4052-9109-a2b853abaf65
+		sourceColumn: "Est. End Date"
+		summarizeBy: None
+
+		variation Variation
+			defaultHierarchy: 'LocalDateTable_99d56d4a-6b3b-4eeb-9c42-5f01d2c58d09'.'Date Hierarchy'
+			isDefault
+			relationship: '2d8e13df-35cc-4937-a18b-a5d5c9da44f2'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount
+		dataType: Double
+		isDataTypeInferred: false
+		lineageTag: 3a77f1aa-500b-4125-ae14-1c404e8e2790
+		sourceColumn: Amount
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TO Requestor'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: bea41248-36e5-44ca-bdfd-dfb0046a5ff2
+		sourceColumn: "TO Requestor"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work At Risk '
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 5f91b363-2317-44bc-96c8-bb14a2cc5eb0
+		sourceColumn: "Work At Risk "
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column TO
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: da817ca3-528c-40dc-b5f9-3eb05c4b88f6
+		sourceColumn: TO
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Existing PO?'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 35602cd9-b6e4-4ef8-a358-f6f7c46a8682
+		sourceColumn: "Existing PO?"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status(What needs to happen to get it out of risk?)'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 064543f3-f080-4a9b-9bab-09bd8e794aa3
+		sourceColumn: "Current Status(What needs to happen to get it out of risk?)"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SSM POC'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 1dd3d4b9-1f60-4a84-bad1-9300bf7b6139
+		sourceColumn: "SSM POC"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Yellow since'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 8211a743-b5a8-4d27-ba9b-0668c5599dbf
+		sourceColumn: "Yellow since"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Red since'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 316363e5-23d5-44af-9df2-37ce4eb3ade1
+		sourceColumn: "Red since"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TO Work'
+		dataType: String
+		isDataTypeInferred: false
+		lineageTag: 9191c0b7-b2c6-409e-bd5b-58e339e8b700
+		sourceColumn: "TO Work"
+		summarizeBy: None
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Red = ('Trend'[Red since]-TODAY())*-1
+		dataType: Double
+		lineageTag: 6d0f4f93-c1e0-4349-817e-51ecfe36661e
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		changedProperty = DataType
+
+	column Age_Yellow = ('Trend'[Yellow since]-TODAY())*-1
+		dataType: Double
+		lineageTag: de33017e-2198-460e-a053-bf27a9d88c8f
+		summarizeBy: Sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

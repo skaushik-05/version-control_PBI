@@ -1,0 +1,15 @@
+model Model
+	compatibilityLevel: 1567
+	culture: en-IN
+	dataAccessOptions:
+		legacyRedirects
+		returnErrorValuesAsNull
+	defaultPowerBIDataSourceVersion: PowerBI_V3
+	sourceQueryCulture: en-IN
+
+annotation PBI_QueryOrder = ["Weekly Status","Trend","Sheet4","Sheet1","File Guidelines"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.120.731.0 (23.08)
+
