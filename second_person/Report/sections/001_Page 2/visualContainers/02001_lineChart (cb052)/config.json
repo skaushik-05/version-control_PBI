@@ -1,0 +1,90 @@
+{
+  "name": "cb05237bc16ec074291e",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 681.4098744769874,
+        "y": 427.766359832636,
+        "z": 2001,
+        "width": 581.32351464435146,
+        "height": 279.6933891213389,
+        "tabOrder": 2001
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "lineChart",
+    "projections": {
+      "Y": [
+        {
+          "queryRef": "Sum(Trend.Age_Yellow)"
+        }
+      ],
+      "Category": [
+        {
+          "queryRef": "Trend.Est. End Date",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t",
+          "Entity": "Trend",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t"
+                  }
+                },
+                "Property": "Age_Yellow"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(Trend.Age_Yellow)",
+          "NativeReferenceName": "Sum of Age_Yellow"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t"
+              }
+            },
+            "Property": "Est. End Date"
+          },
+          "Name": "Trend.Est. End Date",
+          "NativeReferenceName": "Est. End Date"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 1,
+          "Expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "t"
+                }
+              },
+              "Property": "Est. End Date"
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true
+  }
+}

@@ -10,7 +10,7 @@
   "projectionActiveItems": {
     "Category": [
       {
-        "queryRef": "Weekly Status.Vendor",
+        "queryRef": "Weekly Status.Project Name",
         "suppressConcat": false
       }
     ]
@@ -18,47 +18,14 @@
   "queryMetadata": {
     "Select": [
       {
-        "Restatement": "Vendor",
-        "Name": "Weekly Status.Vendor",
+        "Restatement": "Project Name",
+        "Name": "Weekly Status.Project Name",
         "Type": 2048
       },
       {
         "Restatement": "Sum of Amount",
         "Name": "Sum(Weekly Status.Amount)",
         "Type": 1
-      }
-    ],
-    "Filters": [
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Weekly Status"
-              }
-            },
-            "Property": "Vendor"
-          }
-        }
-      },
-      {
-        "type": 2,
-        "expression": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Weekly Status"
-                  }
-                },
-                "Property": "Amount"
-              }
-            },
-            "Function": 0
-          }
-        }
       }
     ]
   },
@@ -80,8 +47,8 @@
   ],
   "selects": [
     {
-      "displayName": "Vendor",
-      "queryName": "Weekly Status.Vendor",
+      "displayName": "Project Name",
+      "queryName": "Weekly Status.Project Name",
       "roles": {
         "Category": true
       },
@@ -96,7 +63,7 @@
               "Entity": "Weekly Status"
             }
           },
-          "Property": "Vendor"
+          "Property": "Project Name"
         }
       }
     },
