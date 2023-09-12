@@ -1,0 +1,51 @@
+{
+  "name": "4660e39779d26b8612c7",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 19.194644351464436,
+        "y": 257.75665271966528,
+        "z": 3,
+        "width": 581.32351464435146,
+        "height": 148.07297071129707,
+        "tabOrder": 3
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "Weekly Status.Project Name"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "w",
+          "Entity": "Weekly Status",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "w"
+              }
+            },
+            "Property": "Project Name"
+          },
+          "Name": "Weekly Status.Project Name",
+          "NativeReferenceName": "Project Name"
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

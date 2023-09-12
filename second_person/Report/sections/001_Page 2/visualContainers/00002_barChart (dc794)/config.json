@@ -14,7 +14,7 @@
     }
   ],
   "singleVisual": {
-    "visualType": "areaChart",
+    "visualType": "barChart",
     "projections": {
       "Category": [
         {
