@@ -1,0 +1,95 @@
+{
+  "name": "dc794dad26a030ed1409",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 601,
+        "y": 0,
+        "width": 581,
+        "height": 280,
+        "z": 2,
+        "tabOrder": 2
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "areaChart",
+    "projections": {
+      "Category": [
+        {
+          "queryRef": "Weekly Status.Vendor",
+          "active": true
+        }
+      ],
+      "Y": [
+        {
+          "queryRef": "Sum(Weekly Status.Amount)"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "w",
+          "Entity": "Weekly Status",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "w"
+              }
+            },
+            "Property": "Vendor"
+          },
+          "Name": "Weekly Status.Vendor",
+          "NativeReferenceName": "Vendor"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "w"
+                  }
+                },
+                "Property": "Amount"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(Weekly Status.Amount)",
+          "NativeReferenceName": "Sum of Amount"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Aggregation": {
+              "Expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Source": "w"
+                    }
+                  },
+                  "Property": "Amount"
+                }
+              },
+              "Function": 0
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "hasDefaultSort": true
+  }
+}
